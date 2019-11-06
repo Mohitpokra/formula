@@ -1,0 +1,39 @@
+{
+  "name": "nuxt-formula",
+  "version": "1.0.0",
+  "description": "Formula application",
+  "author": "Mohit Gupta",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.19",
+    "body-parser": "^1.19.0",
+    "express": "^4.15.3",
+    "mongoose": "^5.7.5",
+    "nuxt": "^2.10.2",
+    "validator": "^11.1.0",
+    "vue-mathjax": "0.0.11"
+  },
+  "devDependencies": {
+    "@mdi/font": "^4.5.95",
+    "@nuxtjs/vuetify": "^1.9.0",
+    "babel-eslint": "^8.2.1",
+    "cross-env": "^5.0.1",
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.13.0",
+    "nodemon": "^1.11.0",
+    "sass-loader": "^8.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+  }
+}

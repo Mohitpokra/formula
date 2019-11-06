@@ -1,0 +1,79 @@
+$primary: #3f51b5;
+$secondary: #03a9f4;
+$accent: #9c27b0;
+$error: #f44336;
+$warning: #cddc39;
+$info: #8bc34a;
+$success: #4caf50;
+$colors: ('red': #a00);
+$colors: (
+            "0": linear-gradient(to right, #CC95C0 0%, #DBD4B4 51%, #CC95C0 100%),
+            "1": linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%),
+            "2":  linear-gradient(to right, #DAE2F8 0%, #D6A4A4 51%, #DAE2F8 100%), 
+            "3":  linear-gradient(to right, #ddd6f3 0%, #faaca8 51%, #ddd6f3 100%),
+            "4": linear-gradient(to right, #B993D6 0%, #8CA6DB 51%, #B993D6 100%),
+            "5": linear-gradient(to right, #C9FFBF 0%, #FFAFBD 51%, #C9FFBF 100%),
+            "6": linear-gradient(to right, #83a4d4 0%, #b6fbff 51%, #83a4d4 100%),
+            "7":  linear-gradient(to right, #FEAC5E 0%, #C779D0 51%, #FEAC5E 100%),
+            "8":linear-gradient(to right, #D1913C 0%, #FFD194 51%, #D1913C 100%),
+            "9": linear-gradient(to right, #ee9ca7 0%, #ffdde1 51%, #ee9ca7 100%),
+            "10": linear-gradient(to right, #EECDA3 0%, #EF629F 51%, #EECDA3 100%)
+            ); 
+$common:  radial-gradient(circle, rgba(201,63,251,1) 0%, rgba(70,153,252,1) 100%); 
+
+
+div[class*="card-bg"] {
+     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+     transition: 0.5s !important;
+     background-size: 200% auto !important;
+     &:hover { background-position: right center; }
+}
+
+
+@for $i from 0 through 10 {
+    .card-bg-#{$i} {
+      background-image: map-get($colors, #{$i}) !important; 
+      max-height: 180px !important;
+      height: 180px !important;
+      overflow: auto !important;
+      &:hover {
+         background-position: right center !important; 
+      }
+    }
+
+    .card-bg-small-#{$i} {
+        background-image: map-get($colors, #{$i}) !important; 
+        height: 100px !important;
+        overflow: auto !important;
+        &:hover {
+           background-position: right center !important; 
+        }
+      }
+  }
+
+  .header {
+    background-image: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%) !important;
+  }
+
+  .footer {
+    background-image: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%) !important;
+  }
+
+  .text-deco-none {
+    text-decoration: none !important;
+  }
+  
+  .br-5 {
+    border-radius: 5px;
+  }
+
+  .text-color {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .dotted-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+  }
