@@ -16,7 +16,7 @@ export const actions = {
     commit
   }) {
     try {
-      let data = await this.$axios.$get('http://127.0.0.1:3000/api/main-category/');
+      let data = await this.$axios.$get('https://all-formula.herokuapp.com/api/main-category/');
       let mainCategoriesData = data.map(item => {
         return {
           id: item._id,
