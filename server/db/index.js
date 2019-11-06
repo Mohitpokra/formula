@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const connect = async () => {
     try {
-       await mongoose.connect('mongodb+srv://mgpokra:Mongo@27607@cluster0-dqzy6.mongodb.net/formula?retryWrites=true&w=majority', { useNewUrlParser: true,  useCreateIndex: true });
+       let uri = 'mongodb+srv://mgpokra:Mongo@@cluster0-dqzy6.mongodb.net/formula?retryWrites=true&w=majority';
+       await mongoose.connect(uri, { useNewUrlParser: true,  useCreateIndex: true });
        console.log('mongodb Connected......');
     } catch(err) {
         console.log(err.message);
