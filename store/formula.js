@@ -5,7 +5,7 @@ export const state = () => ({
 export const getters = {
   getFormulaOfSubCategory: (state) => (payload) => {
     return state.formulas.filter(item => {  
-       return item.subCategory.title.toLowerCase() == payload.subCategory.toLowerCase();
+       return item.sub_category.title.toLowerCase() == payload.subCategory.toLowerCase();
     })
   }   
 }

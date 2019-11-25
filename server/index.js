@@ -6,6 +6,9 @@ const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 const bodyParser = require('body-parser');
 const connect = require('./db/index');
+const {decodeToken} = require('./api/auth/authController');
+// const config1 = require('../config/index');
+// console.log(config1);
 
 
 //*****************Middlewares in backedn******************
@@ -25,6 +28,7 @@ app.use('/api', require('./api/api'));
 
 app.use(function(err, req, res, next) {
   // if error thrown from jwt validation check
+  console.log(err);
   if (err.name === 'UnauthorizedError') {
     res.status(401).send('Invalid token');
     return;

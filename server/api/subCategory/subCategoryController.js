@@ -1,16 +1,38 @@
 const SubCategory = require('./subCategoryModel');
 let { validateSubCategoryPost } = require('../../validation/subCategory/post');
 let Category = require('../category/categoryModel');
+const slugify = require('slug-generator');
 
+module.exports.params = async function(req, resp, next, slug) {
+   try {
+      let subCategory = await SubCategory.findOne({slug: slug}).populate({
+        path: 'products',
+        select: '_id title description equation image'
+      }).select('_id description title').exec();
+
+      if(!subCategory) {
+        return resp.status(404).json({msg: "Not found"});
+      }
+
+      req.subCategory = subCategory;
+      next();
+   } catch(err) {
+
+   }
+}
 
 module.exports.get = async function (req, resp, next) {
   try {
-    let subCategories = await SubCategory.find({}).populate('products').populate('category').exec();
+    let subCategories = await SubCategory.find({}).exec();
     resp.json(subCategories);
   } catch (err) {
     console.log(err.message);
     next(err);
   }
+}
+
+module.exports.getOne = function(req, resp, next) {
+  return resp.json(req.subCategory);
 }
 
 module.exports.post = async function (req, resp, next) {
@@ -24,6 +46,7 @@ module.exports.post = async function (req, resp, next) {
   try {
     let subCategory = new SubCategory();
     subCategory.title = req.body.title;
+    subCategory.slug = slugify(req.body.title);
     subCategory.description = req.body.description;
     subCategory.category = req.body.category;
     subCategory = await subCategory.save();

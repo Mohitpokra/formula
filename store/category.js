@@ -1,11 +1,12 @@
 export const state = () => ({
   categories: [],
+  selCollectionId: null // Current selected collection Id of page
 })
 
 export const getters = {
   getCategoriesOfMainCategory: (state) => (payload) => {
     return state.categories.filter(item => { 
-       return item.mainCategory.title.toLowerCase() == payload.mainCategory.toLowerCase();
+       return item.main_category.title.toLowerCase() == payload.mainCategory.toLowerCase();
     })
   },
   
@@ -20,4 +21,7 @@ export const mutations = {
   initalizeCategories(state, payload) {
     state.categories = payload.categories;
   },
+  setSelCollectionId(state, payload) {
+    state.selCollectionId = payload.id;
+  }
 }

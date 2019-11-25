@@ -1,11 +1,12 @@
 let Product = require('./productModel');
 let SubCategory = require('../subCategory/subCategoryModel');
 let { validateProductPost } = require('../../validation/product/post');
+const slugify = require('slug-generator');
 
 module.exports.get = async function (req, resp, next) {
 
   try {
-    let product = await Product.find({}).populate('sub_category').exec();
+    let product = await Product.find({}).exec();
     resp.json(product);
   } catch (err) {
     console.log(err.message);
@@ -14,9 +15,6 @@ module.exports.get = async function (req, resp, next) {
 }
 
 module.exports.post = async function (req, resp, next) {
-
-  console.log("I am here");
-
   let {
     errors,
     isValid
@@ -29,6 +27,7 @@ module.exports.post = async function (req, resp, next) {
   try {
     let product = new Product();
     product.title = req.body.title;
+    product.slug = slugify(req.body.title);
     product.description = req.body.description;
     product.equation = req.body.equation;
     product.sub_category = req.body.subCategory;

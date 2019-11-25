@@ -1,6 +1,7 @@
 export const state = () => ({
     navBarTitle: "Formulas",
-    skeltonLoading: true
+    skeltonLoading: true,
+    bottomNav: 0   // Bottom Nav active button
 })
 
 export const getters = {
@@ -12,5 +13,8 @@ export const mutations = {
     },
     changeSkletonLoading(state, payload) {
        state.skeltonLoading = payload.skeltonLoading;
+    },
+    setBottomNav(state, payload) {
+        state.bottomNav = payload.number;
     }
 }

@@ -7,10 +7,10 @@ export const getters = {
 export const mutations = {}
 
 export const actions = {
-  async nuxtServerInit({
+   nuxtServerInit({
     dispatch
   }) {
-    await dispatch('mainCategory/getMainCategories', null, {
+    return dispatch('mainCategory/getMainCategories', null, {
       root: true
     });
   }

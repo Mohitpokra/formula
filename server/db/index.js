@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const { dbUrl } = require('../../config/index');
 
 const connect = async () => {
     try {
-       let uri = 'mongodb+srv://mgpokra:Mongo@27607@cluster0-dqzy6.mongodb.net/formula?retryWrites=true&w=majority';
+       let uri = dbUrl;
        await mongoose.connect(uri, { useNewUrlParser: true,  useCreateIndex: true });
        console.log('mongodb Connected......');
     } catch(err) {

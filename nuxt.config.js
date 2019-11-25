@@ -42,6 +42,7 @@ module.exports = {
   */
   plugins: [
     { src:  '@/plugins/filter.js'},
+    { src:  '@/plugins/carousel.js',  mode: 'client'},
     { src: '@/plugins/mathjax/index.client.js', ssr: false},
   ],
 

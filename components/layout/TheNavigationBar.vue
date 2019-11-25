@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar class="header">
+    <v-toolbar class="header" app>
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
