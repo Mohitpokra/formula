@@ -35,11 +35,12 @@
 
 <script>
 import { bottomNav } from "../../../../../mixins/index";
+import config from "../../../../../config/frontend/index";
 export default {
   mixins: [bottomNav],
   async asyncData({ store, params, $axios }) {
     let subCategory = await $axios.$get(
-      `http://127.0.0.1:3000/api/collection/sub_category/${params.mainCategory}/${params.category}/${params.subCategory}`
+      `${config.reqHost}/api/collection/sub_category/${params.mainCategory}/${params.category}/${params.subCategory}`
     );
     return {
       subCategory: subCategory
