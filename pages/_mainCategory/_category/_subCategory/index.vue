@@ -57,10 +57,4 @@ export default {
 </script>
 
 <style scoped>
-.MJXc-display {
-  text-align: left !important;
-}
-.width-0 {
-  width: 0%;
-}
 </style>
