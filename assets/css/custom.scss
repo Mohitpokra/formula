@@ -77,3 +77,10 @@ div[class*="card-bg"] {
     width: 100%;
     white-space: nowrap;
   }
+
+  .v-item-group.v-bottom-navigation {
+    align-items: center !important;
+  }
+  .v-item-group.v-bottom-navigation--grow .v-btn {
+    height: 100% !important
+  }
