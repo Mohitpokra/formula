@@ -4,6 +4,7 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   mode: 'universal',
+  loading: '~/components/loading.vue',
 
   /*
   ** Headers of the page

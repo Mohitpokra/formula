@@ -1,5 +1,10 @@
 <template>
   <div>
+     <v-skeleton-loader
+        class="mx-auto my-2"
+        v-if="!mainCategories"
+        type="card-heading, list-item-three-line"
+      ></v-skeleton-loader>
     <div v-for="(item, index) in mainCategory.categories" :key="item.id">
       <nuxt-link class="text-deco-none" :to="`${item.slug}`" append>
         <v-card :class="[`card-bg-${index}`, 'ma-2', 'my-colr']" height="100%">
