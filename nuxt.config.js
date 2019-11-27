@@ -4,7 +4,9 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   mode: 'universal',
-  loading: '~/components/loading.vue',
+  router: {
+    middleware: 'skelton'
+  },
 
   /*
   ** Headers of the page

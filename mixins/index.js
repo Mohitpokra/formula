@@ -17,3 +17,11 @@ export const bottomNav =  {
       },
     }
   }
+
+export const skeltonLoading = {
+  created () {
+    this.$store.commit('ui/changeSkletonLoading', {
+      skeltonLoading: false
+    })
+  }
+}

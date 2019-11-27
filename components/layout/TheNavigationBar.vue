@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-toolbar class="header" app>
+    <v-app-bar app class="header">
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
-    </v-toolbar>
+    </v-app-bar>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 export const state = () => ({
     navBarTitle: "Formulas",
-    skeltonLoading: true,
+    skeltonLoading: false,
     bottomNav: 0   // Bottom Nav active button
 })
 

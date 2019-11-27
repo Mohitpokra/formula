@@ -1,32 +1,45 @@
 <template>
   <div>
-    <div v-if="mainCategories">
-      <div v-for="mainCategory in mainCategories" :key="mainCategory._id">
-        <p class="title">{{mainCategory.title}}</p>
-        <carousel :scrollPerPage="false">
-          <slide v-for="(category, index) in mainCategory.categories" :key="category.id">
-            <div
-              :class="[`card-bg-small-${index}`, 'my-colr', 'd-flex', 'justify-center', 'align-center', 'theme--light v-card']"
-              @click="goTo(mainCategory, category)"
-            >
-              <p class="subtitle-1 dotted-overflow px-2">{{category.title}}</p>
-            </div>
-          </slide>
-        </carousel>
+    <div v-for="(item,index) in [1,2,3]" :key="index">
+      <v-skeleton-loader
+        class="mx-auto my-2"
+        v-if="skeltonLoading"
+        :height="`${25*index}vh`"
+        type="card-heading, list-item-three-line"
+      ></v-skeleton-loader>
+    </div>
+    <div v-if="!skeltonLoading">
+      <div v-if="mainCategories">
+        <div v-for="mainCategory in mainCategories" :key="mainCategory._id">
+          <p class="title">{{mainCategory.title}}</p>
+          <carousel :scrollPerPage="false">
+            <slide v-for="(category, index) in mainCategory.categories" :key="category.id">
+              <div
+                :class="[`card-bg-small-${index}`, 'my-colr', 'd-flex', 'justify-center', 'align-center', 'theme--light v-card']"
+                @click="goTo(mainCategory, category)"
+              >
+                <p class="subtitle-1 dotted-overflow px-2">{{category.title}}</p>
+              </div>
+            </slide>
+          </carousel>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import config from '../../config/frontend/index'
+import { mapState } from "vuex";
+import config from "../../config/frontend/index";
+import { skeltonLoading } from "../../mixins/index";
 export default {
+  mixins: [skeltonLoading],
   asyncData({ $axios, store }) {
     return $axios
       .$get(`${config.reqHost}/api/collection`)
       .then(data => {
         store.commit("ui/setNavbarTitle", {
-          title: 'Collections'
+          title: "Collections"
         });
         return {
           mainCategories: data.main_categories
@@ -40,6 +53,11 @@ export default {
     return {
       showCarousel: false
     };
+  },
+  computed: {
+    ...mapState("ui", {
+      skeltonLoading: state => state.skeltonLoading
+    })
   },
   mounted() {
     // Set bottomNav tab
