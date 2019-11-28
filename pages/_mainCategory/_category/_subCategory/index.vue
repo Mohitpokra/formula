@@ -20,7 +20,7 @@
               <v-card-subtitle>{{item.title | capitalize}}</v-card-subtitle>
               <no-ssr>
                 <div class="ml-5 width-0">
-                  <vue-mathjax :formula="item.equation" :safe="false"></vue-mathjax>
+                  <vue-mathjax :formula="item.equation" :safe="false" :options="params"></vue-mathjax>
                 </div>
               </no-ssr>
               <v-divider></v-divider>
@@ -47,7 +47,7 @@
 import config from "../../../../config/frontend/index";
 import { bottomNav } from "../../../../mixins/index";
 import { skeltonLoading } from "../../../../mixins/index";
-import { mapState } from "vuex";  
+import { mapState } from "vuex";
 export default {
   mixins: [bottomNav, skeltonLoading],
   async asyncData({ $axios, params, store }) {
@@ -64,6 +64,19 @@ export default {
     } catch (err) {
       return {};
     }
+  },
+  data() {
+    return {
+      params: {
+        tex2jax: {
+          inlineMath: [["$", "$"], ["(", ")"]],
+          displayMath: [["$$", "$$"], ["[", "]"]],
+          processEscapes: true,
+          processEnvironments: true,
+          preview: "none"
+        }
+      }
+    };
   },
   computed: {
     ...mapState("ui", {
