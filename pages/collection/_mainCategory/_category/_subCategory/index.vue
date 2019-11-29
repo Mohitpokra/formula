@@ -33,6 +33,7 @@
         :class="{ footer: !isDark}"
         dark="isDark"
         :style="moveForBottomNavStyle"
+        color="primary"
         bottom
         right
         fixed
@@ -51,8 +52,7 @@ import config from "../../../../../config/frontend/index";
 export default {
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
+    enterActiveClass: "animated fadeInUp"
   },
   mixins: [bottomNav, skeltonLoading],
   async asyncData({ store, params, $axios }) {

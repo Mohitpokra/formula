@@ -31,6 +31,7 @@
         :class="{ footer: !isDark}"
         dark="isDark"
         :style="moveForBottomNavStyle"
+        color="primary"
         bottom
         right
         fixed
@@ -51,8 +52,7 @@ export default {
   mixins: [bottomNav, skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
+    enterActiveClass: "animated fadeInUp"
   },
   async asyncData({ $axios, params, store }) {
     try {

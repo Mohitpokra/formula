@@ -35,6 +35,7 @@
         :style="moveForBottomNavStyle"
         bottom
         right
+        color="primary"
         fixed
         @click="$router.go(-1)"
       >
@@ -54,7 +55,6 @@ export default {
   transition: {
     name: "custom-classes-transition",
     enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
   },
   async asyncData({ $axios, params, store }) {
     try {

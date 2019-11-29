@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-app-bar app :class="{ header: !isDark}" dark>
+    <v-app-bar app :class="{ header: !isDark}" :dark="isDark" :light="!isDark">
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="changeTheme">
-        <v-icon>mdi-invert-colors</v-icon>
+        <v-icon color="primary">mdi-invert-colors</v-icon>
       </v-btn>
     </v-app-bar>
   </div>

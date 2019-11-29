@@ -37,8 +37,7 @@ export default {
   mixins: [skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
+    enterActiveClass: "animated fadeInUp"
   },
   asyncData({ $axios, store }) {
     return $axios

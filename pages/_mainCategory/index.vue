@@ -29,6 +29,7 @@
         bottom
         right
         fixed
+        color="primary"
         @click="$router.go(-1)"
       >
         <v-icon>mdi-arrow-left</v-icon>
@@ -77,7 +78,6 @@ export default {
   transition: {
     name: "custom-classes-transition",
     enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
   }
 };
 </script>

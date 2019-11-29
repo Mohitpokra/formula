@@ -34,6 +34,7 @@
           dark="isDark"
           :style="moveForBottomNavStyle"
           bottom
+          color="primary"
           right
           fixed
           @click="$router.go(-1)"
@@ -53,8 +54,7 @@ import config from "../../../../config/frontend/index";
 export default {
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
+    enterActiveClass: "animated fadeInUp"
   },
   mixins: [bottomNav, skeltonLoading],
   asyncData({ $axios, store, params }) {

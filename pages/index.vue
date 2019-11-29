@@ -38,8 +38,7 @@ export default {
   mixins: [skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeOutDown"
+    enterActiveClass: "animated fadeInUp"
   },
   async asyncData({ $axios, store }) {
     let data = await $axios.$get(`${config.reqHost}/api/public`);

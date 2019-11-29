@@ -2,15 +2,26 @@ import colors from "vuetify/es5/util/colors";
 
 export default {
   theme: {
-    dark: false, // From 2.0 You have to select the theme dark or light here
-    light: {
-      primary: '#3f51b5',
-      secondary: '#03a9f4',
-      accent: '#9c27b0',
-      error: '#f44336',
-      warning: '#cddc39',
-      info: '#8bc34a',
-      success: '#4caf50'
+    dark: false,
+    themes: {
+      dark: {
+        primary: '#21CFF3',
+        accent: '#FF4081',
+        secondary: '#ffe18d',
+        success: '#4CAF50',
+        info: '#2196F3',
+        warning: '#FB8C00',
+        error: '#FF5252'
+      },
+      light: {
+        primary: '##FFFFFF',
+        accent: '#e91e63',
+        secondary: '#30b1dc',
+        success: '#4CAF50',
+        info: '#2196F3',
+        warning: '#FB8C00',
+        error: '#FF5252'
+      }
     }
   }
 };
