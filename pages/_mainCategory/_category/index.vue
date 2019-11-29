@@ -10,25 +10,26 @@
     </div>
     <div v-if="!skeltonLoading">
       <v-container fluid>
-        <v-card color="#385F73" dark>
+        <v-card :color="isDark ? '' :'#0097A7'" :dark="isDark">
           <v-card-title class="headline">{{category.title}}</v-card-title>
           <v-card-subtitle>{{category.description}}</v-card-subtitle>
         </v-card>
         <v-row>
           <v-col cols="6" v-for="(item, index) in category.sub_categories" :key="item.id">
             <nuxt-link class="text-deco-none" :to="`${item.slug}`" append>
-              <div
-                :class="[`card-bg-small-${index}`, 'ma-2', 'my-colr', 'd-flex', 'justify-center', 'align-center', 'br-5', 'theme--light v-card']"
+              <v-card
+                :class="[{ [`card-bg-small-${index}`]: !isDark }, 'ch-50', 'ma-2', 'my-colr', 'd-flex', 'justify-center', 'align-center', 'br-5', 'theme--light v-card']"
               >
                 <p class="subtitle-1 dotted-overflow px-2 text-center">{{item.title | capitalize }}</p>
-              </div>
+              </v-card>
             </nuxt-link>
           </v-col>
         </v-row>
       </v-container>
       <v-btn
         fab
-        class="footer"
+        :class="{ footer: !isDark}"
+        dark="isDark"
         :style="moveForBottomNavStyle"
         bottom
         right
@@ -42,12 +43,17 @@
 </template>
 
 <script>
-import { mapState } from "vuex";  
+import { mapState } from "vuex";
 import config from "../../../config/frontend/index";
 import { bottomNav } from "../../../mixins/index";
 import { skeltonLoading } from "../../../mixins/index";
 export default {
   mixins: [bottomNav, skeltonLoading],
+  transition: {
+    name: "custom-classes-transition",
+    enterActiveClass: "animated fadeInUp",
+    leaveActiveClass: "animated fadeInUp"
+  },
   async asyncData({ $axios, params, store }) {
     try {
       let category = await $axios.$get(
@@ -63,7 +69,8 @@ export default {
   },
   computed: {
     ...mapState("ui", {
-      skeltonLoading: state => state.skeltonLoading
+      skeltonLoading: state => state.skeltonLoading,
+      isDark: state => state.darkTheme
     })
   }
 };

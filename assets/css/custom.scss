@@ -33,9 +33,6 @@ div[class*="card-bg"] {
 @for $i from 0 through 10 {
     .card-bg-#{$i} {
       background-image: map-get($colors, #{$i}) !important; 
-      max-height: 180px !important;
-      height: 180px !important;
-      overflow: auto !important;
       &:hover {
          background-position: right center !important; 
       }
@@ -48,6 +45,17 @@ div[class*="card-bg"] {
         &:hover {
            background-position: right center !important; 
         }
+      }
+
+      .ch-100 {
+        max-height: 180px !important;
+        height: 180px !important;
+        overflow: auto !important;
+      }
+
+      .ch-50 {
+        height: 100px !important;
+        overflow: auto !important;
       }
   }
 

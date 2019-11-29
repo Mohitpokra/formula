@@ -14,12 +14,13 @@
           <p class="title">{{mainCategory.title}}</p>
           <carousel :scrollPerPage="false">
             <slide v-for="(category, index) in mainCategory.categories" :key="category.id">
-              <div
-                :class="[`card-bg-small-${index}`, 'my-colr', 'd-flex', 'justify-center', 'align-center', 'theme--light v-card']"
+              <v-card
+                :class="[{ [`card-bg-small-${index}`]: !isDark }, 'my-colr', 'd-flex', 'justify-center', 'ch-50' ,'align-center', 'theme--light v-card']"
                 @click="goTo(mainCategory, category)"
+                :dark="isDark"
               >
                 <p class="subtitle-1 dotted-overflow px-2">{{category.title}}</p>
-              </div>
+              </v-card>
             </slide>
           </carousel>
         </div>
@@ -34,6 +35,11 @@ import config from "../../config/frontend/index";
 import { skeltonLoading } from "../../mixins/index";
 export default {
   mixins: [skeltonLoading],
+    transition: {
+    name: "custom-classes-transition",
+    enterActiveClass: "animated fadeInUp",
+    leaveActiveClass: "animated fadeInUp"
+  },
   asyncData({ $axios, store }) {
     return $axios
       .$get(`${config.reqHost}/api/collection`)
@@ -56,7 +62,8 @@ export default {
   },
   computed: {
     ...mapState("ui", {
-      skeltonLoading: state => state.skeltonLoading
+      skeltonLoading: state => state.skeltonLoading,
+       isDark: state => state.darkTheme
     })
   },
   mounted() {

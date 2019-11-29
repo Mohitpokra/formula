@@ -10,7 +10,7 @@
     </div>
     <div v-if="!skeltonLoading">
       <v-container fluid>
-        <v-card color="#385F73" dark>
+        <v-card :color="isDark ? '' :'#0097A7'" :dark="isDark">
           <v-card-title class="headline">{{subCategory.title}}</v-card-title>
           <v-card-subtitle>{{subCategory.description}}</v-card-subtitle>
         </v-card>
@@ -19,8 +19,8 @@
             <v-card v-for="item in subCategory.products" :key="item.id" flat>
               <v-card-subtitle>{{item.title | capitalize}}</v-card-subtitle>
               <no-ssr>
-                <div class="ml-5 width-0">
-                  <vue-mathjax :formula="item.equation" :safe="false"></vue-mathjax>
+                <div class="ml-5 width-0 ch-50">
+                  <vue-mathjax :formula="item.equation" :safe="false"  :options="params"></vue-mathjax>
                 </div>
               </no-ssr>
               <v-divider></v-divider>
@@ -30,7 +30,8 @@
       </v-container>
       <v-btn
         fab
-        class="footer"
+        :class="{ footer: !isDark}"
+        dark="isDark"
         :style="moveForBottomNavStyle"
         bottom
         right
@@ -57,9 +58,24 @@ export default {
       subCategory: subCategory
     };
   },
+  data() {
+    return {
+      params: {
+        tex2jax: {
+          inlineMath: [["$", "$"], ["(", ")"]],
+          displayMath: [["$$", "$$"], ["[", "]"]],
+          processEscapes: true,
+          processEnvironments: true,
+          preview: ".......loading"
+        },
+        showMathMenu: false
+      }
+    };
+  },
   computed: {
     ...mapState("ui", {
-      skeltonLoading: state => state.skeltonLoading
+      skeltonLoading: state => state.skeltonLoading,
+      isDark: state => state.darkTheme
     })
   }
 };

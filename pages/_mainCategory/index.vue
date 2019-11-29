@@ -11,7 +11,11 @@
     <div v-if="!skeltonLoading">
       <div v-for="(item, index) in mainCategory.categories" :key="item.id">
         <nuxt-link class="text-deco-none" :to="`${item.slug}`" append>
-          <v-card :class="[`card-bg-${index}`, 'ma-2', 'my-colr']" height="100%">
+          <v-card
+            :class="[{ [`card-bg-${index}`]: !isDark }, 'ma-2', 'ch-100', {'my-colr': !isDark}]"
+            height="100%"
+            dark="isDark"
+          >
             <v-card-title class="headline">{{item.title | capitalize }}</v-card-title>
             <v-card-subtitle>{{item.description | capitalize}}</v-card-subtitle>
           </v-card>
@@ -19,7 +23,8 @@
       </div>
       <v-btn
         fab
-        class="footer"
+        :class="{ footer: !isDark}"
+        dark="isDark"
         :style="moveForBottomNavStyle"
         bottom
         right
@@ -33,7 +38,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";  
+import { mapState } from "vuex";
 import config from "../../config/frontend/index";
 import { bottomNav } from "../../mixins/index";
 import { skeltonLoading } from "../../mixins/index";
@@ -60,13 +65,19 @@ export default {
       return this.$route.params.mainCategory;
     },
     ...mapState("ui", {
-      skeltonLoading: state => state.skeltonLoading
+      skeltonLoading: state => state.skeltonLoading,
+      isDark: state => state.darkTheme
     })
   },
   methods: {
     change() {
       this.mainCategory = null;
     }
+  },
+  transition: {
+    name: "custom-classes-transition",
+    enterActiveClass: "animated fadeInUp",
+    leaveActiveClass: "animated fadeInUp"
   }
 };
 </script>

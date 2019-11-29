@@ -16,7 +16,11 @@
           :key="item.id"
           :to="`/${item.slug}`"
         >
-          <v-card :class="[`card-bg-${index}`, 'ma-2', 'my-colr']" height="100%">
+          <v-card
+            :class="[{ [`card-bg-${index}`]: !isDark }, 'ma-2', 'ch-100', {'my-colr': !isDark}]"
+            height="100%"
+            :dark="isDark"
+          >
             <v-card-title class="headline">{{item.title | capitalize }}</v-card-title>
             <v-card-subtitle>{{item.description | capitalize}}</v-card-subtitle>
           </v-card>
@@ -32,6 +36,11 @@ import config from "../config/frontend/index";
 import { skeltonLoading } from "../mixins/index";
 export default {
   mixins: [skeltonLoading],
+  transition: {
+    name: "custom-classes-transition",
+    enterActiveClass: "animated fadeInUp",
+    leaveActiveClass: "animated fadeInUp"
+  },
   async asyncData({ $axios, store }) {
     let data = await $axios.$get(`${config.reqHost}/api/public`);
     store.commit("ui/setNavbarTitle", {
@@ -46,7 +55,8 @@ export default {
   },
   computed: {
     ...mapState("ui", {
-      skeltonLoading: state => state.skeltonLoading
+      skeltonLoading: state => state.skeltonLoading,
+      isDark: state => state.darkTheme
     })
   },
   mounted() {

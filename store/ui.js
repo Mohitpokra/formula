@@ -1,6 +1,7 @@
 export const state = () => ({
     navBarTitle: "Formulas",
     skeltonLoading: false,
+    darkTheme: false,
     bottomNav: 0   // Bottom Nav active button
 })
 
@@ -16,5 +17,8 @@ export const mutations = {
     },
     setBottomNav(state, payload) {
         state.bottomNav = payload.number;
+    },
+    changeTheme(state) {
+        state.darkTheme = !state.darkTheme
     }
 }
