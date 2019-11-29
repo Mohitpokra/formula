@@ -20,7 +20,7 @@
               <v-card-subtitle>{{item.title | capitalize}}</v-card-subtitle>
               <no-ssr>
                 <div class="ml-5 width-0 ch-50">
-                  <vue-mathjax :formula="item.equation" :safe="false"  :options="params"></vue-mathjax>
+                  <vue-mathjax :formula="item.equation" :safe="false" :options="params"></vue-mathjax>
                 </div>
               </no-ssr>
               <v-divider></v-divider>
@@ -49,6 +49,11 @@ import { mapState } from "vuex";
 import { bottomNav, skeltonLoading } from "../../../../../mixins/index";
 import config from "../../../../../config/frontend/index";
 export default {
+  transition: {
+    name: "custom-classes-transition",
+    enterActiveClass: "animated fadeInUp",
+    leaveActiveClass: "animated fadeOutDown"
+  },
   mixins: [bottomNav, skeltonLoading],
   async asyncData({ store, params, $axios }) {
     let subCategory = await $axios.$get(

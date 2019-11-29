@@ -35,10 +35,10 @@ import config from "../../config/frontend/index";
 import { skeltonLoading } from "../../mixins/index";
 export default {
   mixins: [skeltonLoading],
-    transition: {
+  transition: {
     name: "custom-classes-transition",
     enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeInUp"
+    leaveActiveClass: "animated fadeOutDown"
   },
   asyncData({ $axios, store }) {
     return $axios
@@ -63,7 +63,7 @@ export default {
   computed: {
     ...mapState("ui", {
       skeltonLoading: state => state.skeltonLoading,
-       isDark: state => state.darkTheme
+      isDark: state => state.darkTheme
     })
   },
   mounted() {

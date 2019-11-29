@@ -30,7 +30,7 @@
       <v-card>
         <v-btn
           fab
-         :class="{ footer: !isDark}"
+          :class="{ footer: !isDark}"
           dark="isDark"
           :style="moveForBottomNavStyle"
           bottom
@@ -51,6 +51,11 @@ import { bottomNav } from "../../../../mixins/index";
 import { skeltonLoading } from "../../../../mixins/index";
 import config from "../../../../config/frontend/index";
 export default {
+  transition: {
+    name: "custom-classes-transition",
+    enterActiveClass: "animated fadeInUp",
+    leaveActiveClass: "animated fadeOutDown"
+  },
   mixins: [bottomNav, skeltonLoading],
   asyncData({ $axios, store, params }) {
     return $axios

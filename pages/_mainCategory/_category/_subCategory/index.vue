@@ -54,7 +54,7 @@ export default {
   transition: {
     name: "custom-classes-transition",
     enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeInUp"
+    leaveActiveClass: "animated fadeOutDown"
   },
   async asyncData({ $axios, params, store }) {
     try {

@@ -39,7 +39,7 @@ export default {
   transition: {
     name: "custom-classes-transition",
     enterActiveClass: "animated fadeInUp",
-    leaveActiveClass: "animated fadeInUp"
+    leaveActiveClass: "animated fadeOutDown"
   },
   async asyncData({ $axios, store }) {
     let data = await $axios.$get(`${config.reqHost}/api/public`);
