@@ -91,25 +91,29 @@ export default {
         showMathMenu: false
       },
       breadcrumbs: [
-         {
+        {
           text: "home".toUpperCase(),
           disabled: false,
-          href: `/`
+          exact: true,
+          to: `/`
         },
         {
           text: this.$route.params.mainCategory.toUpperCase(),
           disabled: false,
-          href: `/${this.$route.params.mainCategory}`
+          exact: true,
+          to: `/${this.$route.params.mainCategory}`
         },
         {
           text: this.$route.params.category.toUpperCase(),
           disabled: false,
-          href: `/${this.$route.params.mainCategory}/${this.$route.params.category}`
+          exact: true,
+          to: `/${this.$route.params.mainCategory}/${this.$route.params.category}`
         },
         {
           text: this.$route.params.subCategory.toUpperCase(),
           disabled: true,
-          href: `/${this.$route.params.mainCategory}/${this.$route.params.category}/${this.$route.params.subCategory}`
+          exact: true,
+          to: `/${this.$route.params.mainCategory}/${this.$route.params.category}/${this.$route.params.subCategory}`
         }
       ]
     };

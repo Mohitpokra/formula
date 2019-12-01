@@ -68,12 +68,14 @@ export default {
         {
           text: "home".toUpperCase(),
           disabled: false,
-          href: `/`
+          exact: true,
+          to: `/`
         },
         {
           text: this.$route.params.mainCategory.toUpperCase(),
           disabled: true,
-          href: `/${this.$route.params.mainCategory}`
+          exact: true,
+          to: `/${this.$route.params.mainCategory}`
         }
       ]
     };

@@ -20,7 +20,8 @@ export default {
         {
           text: "Collection".toUpperCase(),
           disabled: false,
-          href: `/collection`
+          exact: true,
+          to: `/collection`
         },
         {
           text: "coming-soon",

@@ -80,16 +80,18 @@ export default {
         {
           text: "Collection".toUpperCase(),
           disabled: false,
-          href: `/collection`
+          exact: true,
+          to: `/collection`
         },
         {
           text: this.$route.params.mainCategory.toUpperCase(),
+          exact: true,
           disabled: false,
-          href: `/collection/${this.$route.params.mainCategory}`
+          to: `/collection/${this.$route.params.mainCategory}`
         },
         {
           text: this.$route.params.category.toUpperCase(),
-          disabled: true
+          to: true
         }
       ]
     };
