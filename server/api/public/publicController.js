@@ -22,6 +22,30 @@ module.exports.params = async function (req, resp, next, slug) {
   }
 }
 
+module.exports.getNexted = async function (req, resp, next) {
+  try {
+    let mainCategories = await Public.findOne({}).populate({
+      path: `main_categories`,
+      populate: [{
+          path: 'categories',
+          populate: [{
+              path: 'sub_categories',
+              populate: [{
+                  path: 'products'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }).exec();
+    resp.json(mainCategories);
+  } catch (err) {
+    console.log(err.message);
+    next(err);
+  }
+}
+
 module.exports.get = async function (req, res, next) {
 
   try {

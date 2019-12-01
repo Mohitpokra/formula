@@ -1,5 +1,10 @@
 <template>
   <div>
+     <v-breadcrumbs color="red" :items="breadcrumbs">
+        <template v-slot:divider>
+          <v-icon>mdi-forward</v-icon>
+        </template>
+      </v-breadcrumbs>
     <div v-for="(item,index) in [1,2,3]" :key="index">
       <v-skeleton-loader
         class="mx-auto my-2"
@@ -72,6 +77,27 @@ export default {
       skeltonLoading: state => state.skeltonLoading,
       isDark: state => state.darkTheme
     })
+  },
+  data() {
+    return {
+      breadcrumbs: [
+         {
+          text: "home".toUpperCase(),
+          disabled: false,
+          href: `/`
+        },
+        {
+          text: this.$route.params.mainCategory.toUpperCase(),
+          disabled: false,
+          href: `/${this.$route.params.mainCategory}`
+        },
+        {
+          text: this.$route.params.category.toUpperCase(),
+          disabled: true,
+          href: `/${this.$route.params.mainCategory}/${this.$route.params.category}`
+        }
+      ]
+    }
   }
 };
 </script>

@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-breadcrumbs :items="breadcrumbs">
+      <template v-slot:divider>
+        <v-icon>mdi-forward</v-icon>
+      </template>
+    </v-breadcrumbs>
     <div v-for="(item,index) in [1,2,3]" :key="index">
       <v-skeleton-loader
         class="mx-auto my-2"
@@ -68,6 +73,26 @@ export default {
         };
       })
       .catch(err => {});
+  },
+  data() {
+    return {
+      breadcrumbs: [
+        {
+          text: "Collection".toUpperCase(),
+          disabled: false,
+          href: `/collection`
+        },
+        {
+          text: this.$route.params.mainCategory.toUpperCase(),
+          disabled: false,
+          href: `/collection/${this.$route.params.mainCategory}`
+        },
+        {
+          text: this.$route.params.category.toUpperCase(),
+          disabled: true
+        }
+      ]
+    };
   },
   methods: {
     goTo(category, item) {

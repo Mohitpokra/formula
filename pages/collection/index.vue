@@ -84,7 +84,6 @@ export default {
 .VueCarousel-slide {
   position: relative;
   padding: 0 10px;
-  color: #fff;
   font-family: Arial;
   font-size: 24px;
   text-align: center;
