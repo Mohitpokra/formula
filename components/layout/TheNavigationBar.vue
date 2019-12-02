@@ -3,6 +3,9 @@
     <v-app-bar app :class="{ header: !isDark}" :dark="isDark" :light="!isDark">
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn icon to="/search" v-if="$route.fullPath == '/' ||$route.params.mainCategory">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
       <v-btn icon @click="changeTheme">
         <v-icon color="primary">mdi-invert-colors</v-icon>
       </v-btn>
@@ -21,8 +24,8 @@ export default {
   },
   methods: {
     changeTheme() {
-         this.$vuetify.theme.dark =  !this.$vuetify.theme.dark
-         this.$store.commit('ui/changeTheme');
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      this.$store.commit("ui/changeTheme");
     }
   }
 };

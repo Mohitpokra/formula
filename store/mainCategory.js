@@ -28,7 +28,7 @@ export const actions = {
       commit('category/initalizeCategories', {
         categories: data.categories
       }, {
-        root: true
+        root: true 
       });
 
       commit('subCategory/initalizeSubCategories', {

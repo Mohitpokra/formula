@@ -17,6 +17,6 @@ router.route('/sub_category/:mainCategory/:category/:subCategory')
   .get(publicController.subCategoryInMainCategory);
 
 router.route('/main_category/:mainCategory').get(publicController.mainCategory);
-router.get('/nested', publicController.getNexted);
+router.get('/nexted', publicController.getNexted);
 
 module.exports = router;
