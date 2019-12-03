@@ -1,7 +1,7 @@
 <template>
   <v-bottom-navigation app :value="bottomNav" fixed grow :class="{ footer: !isDark}" :dark="isDark">
     <v-btn to="/">
-      <span>Bookmark</span>
+      <span>Offline</span>
       <v-icon color="primary">mdi-bookmark-outline</v-icon>
     </v-btn>
 

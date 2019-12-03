@@ -16,14 +16,17 @@
     <v-card-text>
       <v-treeview
         v-if="items"
-        :open-all="open_all"
         :items="items"
         :search="search"
-        :filter="filter"
+        hoverable
+        activatable
         :open.sync="open"
         activatabless
-        open-on-click
       >
+        <template v-slot:label="{ item }">
+          <div class="v-treeview-node__label" @click="goTo(item.to)">item.title</div>
+        </template>
+
         <template v-slot:prepend="{ item }">
           <v-icon
             v-if="item.children"
@@ -31,7 +34,7 @@
           ></v-icon>
         </template>
         <template v-slot:append="{ item }">
-          <v-btn :to="item.to" icon color="primary">
+          <v-btn icon color="primary">
             <v-icon>mdi-launch</v-icon>
           </v-btn>
         </template>
@@ -45,7 +48,6 @@
 export default {
   layout: "search",
   data: () => ({
-    open: [],
     open_all: true,
     search: null,
     caseSensitive: false,
@@ -56,12 +58,19 @@ export default {
       return this.caseSensitive
         ? (item, search, textKey) => item[textKey].indexOf(search) > -1
         : undefined;
+    },
+    open() {
+      return this.$store.state.public.openNodes;
     }
   },
   mounted() {
     this.items = this.$store.state.public.filterData;
   },
-  methods: {}
+  methods: {
+    goTo(to) {
+      this.$router.push(to);
+    }
+  }
 };
 </script>
 
