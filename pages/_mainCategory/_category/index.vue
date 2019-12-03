@@ -57,20 +57,23 @@ export default {
   mixins: [bottomNav, skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp"
+    enterActiveClass: "animated fadeInLeft"
   },
   async asyncData({ $axios, params, store }) {
     try {
-      let category = await $axios.$get(
-        `${config.reqHost}/api/public/category/${params.mainCategory}/${params.category}`
-      );
+      // let category = await $axios.$get(
+      //   `${config.reqHost}/api/public/category/${params.mainCategory}/${params.category}`
+      // );
+      let category = store.state.public.bookMarkData.find(item => item.slug == params.mainCategory).categories.find(item => item.slug == params.category);
       store.commit("ui/setNavbarTitle", {
         title: category.title
       });
       return {
         category: category
       };
-    } catch (err) {}
+    } catch (err) {
+      console.log(err)
+    }
   },
   computed: {
     ...mapState("ui", {

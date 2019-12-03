@@ -51,12 +51,19 @@ import { skeltonLoading } from "../../mixins/index";
 export default {
   mixins: [bottomNav, skeltonLoading],
   async asyncData({ $axios, params, store }) {
-    let mainCategory = await $axios.$get(
-      `${config.reqHost}/api/public/main_category/${params.mainCategory}`
+    //******Directly taken from api *********/
+    // let mainCategory = await $axios.$get(
+    //   `${config.reqHost}/api/public/main_category/${params.mainCategory}`
+    // );
+
+    let mainCategory = store.state.public.bookMarkData.find(
+      item => item.slug == params.mainCategory
     );
+
     store.commit("ui/setNavbarTitle", {
       title: mainCategory.title
     });
+
     return {
       mainCategory: mainCategory
     };
@@ -96,7 +103,7 @@ export default {
   },
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp"
+    enterActiveClass: "animated fadeInLeft"
   }
 };
 </script>

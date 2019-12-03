@@ -61,13 +61,17 @@ export default {
   mixins: [bottomNav, skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInUp"
+    enterActiveClass: "animated fadeInLeft"
   },
   async asyncData({ $axios, params, store }) {
     try {
-      let subCategory = await $axios.$get(
-        `${config.reqHost}/api/public/sub_category/${params.mainCategory}/${params.category}/${params.subCategory}`
-      );
+      // let subCategory = await $axios.$get(
+      //   `${config.reqHost}/api/public/sub_category/${params.mainCategory}/${params.category}/${params.subCategory}`
+      // );
+      let subCategory = store.state.public.bookMarkData
+        .find(item => item.slug == params.mainCategory)
+        .categories.find(item => item.slug == params.category)
+        .sub_categories.find(item => item.slug == params.subCategory);
       store.commit("ui/setNavbarTitle", {
         title: subCategory.title
       });
