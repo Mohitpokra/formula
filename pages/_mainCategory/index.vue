@@ -103,7 +103,7 @@ export default {
   },
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInLeft"
+    enterActiveClass: "animated bounceInLeft"
   }
 };
 </script>

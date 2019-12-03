@@ -38,14 +38,14 @@ export default {
   mixins: [skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInLeft"
+    enterActiveClass: "animated bounceInLeft"
   },
   async asyncData({ $axios, store }) {
 
     //********Directly take data from api ****************/
     // let data = await $axios.$get(`${config.reqHost}/api/public`);
     // return { mainCategories: data.main_categories };
-    
+
     store.commit("ui/setNavbarTitle", {
       title: "Formulas"
     });

@@ -57,7 +57,7 @@ export default {
   mixins: [bottomNav, skeltonLoading],
   transition: {
     name: "custom-classes-transition",
-    enterActiveClass: "animated fadeInLeft"
+    enterActiveClass: "animated bounceInLeft"
   },
   async asyncData({ $axios, params, store }) {
     try {
