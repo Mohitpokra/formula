@@ -24,7 +24,7 @@
         activatabless
       >
         <template v-slot:label="{ item }">
-          <div class="v-treeview-node__label" @click="goTo(item.to)">item.title</div>
+          <div class="v-treeview-node__label" @click="goTo(item.to)">{{item.name}}</div>
         </template>
 
         <template v-slot:prepend="{ item }">
