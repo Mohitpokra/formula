@@ -10,12 +10,9 @@
         :open.sync="open"
         activatabless
       >
-        <template v-slot:label="{ item }">
-          <div class="v-treeview-node__label" @click="goTo(item.to)">{{item.name}}</div>
-        </template>
-
         <template v-slot:prepend="{ item }">
           <v-icon
+            @click="goTo(item.to)"
             v-if="item.children"
             v-text="`mdi-${item.id === 1 ? 'home-variant' : 'folder-network'}`"
           ></v-icon>
