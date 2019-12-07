@@ -34,15 +34,15 @@
       <v-btn
         fab
         :class="{ footer: !isDark}"
-        dark="isDark"
+        :dark="isDark"
         :style="moveForBottomNavStyle"
-        color="primary"
         bottom
         right
         fixed
-        @click="$router.go(-1)"
+        color="primary"
+        @click="shortcut"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon>mdi-apps</v-icon>
       </v-btn>
     </div>
   </div>
@@ -64,7 +64,9 @@ export default {
       // let category = await $axios.$get(
       //   `${config.reqHost}/api/public/category/${params.mainCategory}/${params.category}`
       // );
-      let category = store.state.public.bookMarkData.find(item => item.slug == params.mainCategory).categories.find(item => item.slug == params.category);
+      let category = store.state.public.bookMarkData
+        .find(item => item.slug == params.mainCategory)
+        .categories.find(item => item.slug == params.category);
       store.commit("ui/setNavbarTitle", {
         title: category.title
       });
@@ -72,7 +74,7 @@ export default {
         category: category
       };
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   },
   computed: {
@@ -103,6 +105,12 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    shortcut() {
+      this.$store.commit("public/setShortcutData", this.$route.params);
+      this.$router.push("/shortcut");
+    }
   }
 };
 </script>

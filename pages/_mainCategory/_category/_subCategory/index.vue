@@ -38,15 +38,15 @@
       <v-btn
         fab
         :class="{ footer: !isDark}"
-        dark="isDark"
+        :dark="isDark"
         :style="moveForBottomNavStyle"
         bottom
         right
-        color="primary"
         fixed
-        @click="$router.go(-1)"
+        color="primary"
+        @click="shortcut"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon>mdi-apps</v-icon>
       </v-btn>
     </div>
   </div>
@@ -127,6 +127,12 @@ export default {
       skeltonLoading: state => state.skeltonLoading,
       isDark: state => state.darkTheme
     })
+  },
+  methods: {
+    shortcut() {
+      this.$store.commit("public/setShortcutData", this.$route.params);
+      this.$router.push("/shortcut");
+    }
   }
 };
 </script>

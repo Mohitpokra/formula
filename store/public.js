@@ -2,7 +2,8 @@ import config from '../config/frontend/index';
 export const state = () => ({
   filterData: [],
   bookMarkData: [],
-  openNodes:[],
+  shortCutData: [],
+  openNodes: [],
 })
 
 export const getters = {
@@ -16,6 +17,7 @@ export const mutations = {
     payload.data.main_categories.forEach((item, index) => {
       let obj = {};
       obj.id = index;
+      obj.slug = item.slug;
       openNode.push(obj.id);
       obj.name = item.title;
       obj.to = `/${item.slug}`;
@@ -25,13 +27,15 @@ export const mutations = {
         obj_1.id = item_1._id;
         openNode.push(obj_1.id);
         obj_1.name = item_1.title;
+        obj_1.slug = item_1.slug;
         obj_1.to = `${obj.to}/${item_1.slug}`;
         obj_1.children = [];
 
         item_1.sub_categories.forEach((item_2) => {
           let obj_2 = {};
           obj_2.id = item_2._id;
-          openNode.push( obj_2.id);
+          obj_2.slug = item_2.slug;
+          openNode.push(obj_2.id);
           obj_2.name = item_2.title;
           obj_2.to = `${obj_1.to}/${item_2.slug}`;
           obj_2.children = [];
@@ -39,7 +43,8 @@ export const mutations = {
           item_2.products.forEach((item_3) => {
             let obj_3 = {};
             obj_3.id = item_3._id;
-            openNode.push( obj_3.id);
+            obj_3.slug = item_3.slug;
+            openNode.push(obj_3.id);
             obj_3.name = item_3.title;
             obj_3.to = obj_2.to;
             obj_2.children.push(obj_3);
@@ -55,6 +60,26 @@ export const mutations = {
   },
   bookMarkData(state, payload) {
     state.bookMarkData = payload.data.main_categories;
+  },
+  setShortcutData(state, payload) {
+    let openNode = [];
+    state.shortCutData = state.filterData.filter(item => payload.mainCategory == item.slug);
+    state.filterData.forEach(item => {
+      if (item.slug == payload.mainCategory) {
+        openNode.push(item.id);
+        item.children.forEach(item_1 => {
+          if (item_1.slug == payload.category) {
+            openNode.push(item_1.id);
+            item_1.children.forEach(item_2 => {
+              if (item_2.slug = payload.subCategory) {
+                openNode.push(item_2.id);
+              }
+            })
+          }
+        })
+      }
+    })
+    state.openNodes = openNode;
   }
 }
 

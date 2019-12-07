@@ -65,6 +65,14 @@ module.exports = {
     optionsPath: "./vuetify.options.js",
 
   },
+  /**
+   * Pwa Modules
+   */
+  pwa: {
+    workbox: {
+      dev: false
+    }
+  },
   /*
   ** Axios module configuration
   */

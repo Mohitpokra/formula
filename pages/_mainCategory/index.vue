@@ -19,7 +19,7 @@
           <v-card
             :class="[{ [`card-bg-${index}`]: !isDark }, 'ma-2', 'ch-100', {'my-colr': !isDark}]"
             height="100%"
-            dark="isDark"
+            :dark="isDark"
           >
             <v-card-title class="headline">{{item.title | capitalize }}</v-card-title>
             <v-card-subtitle>{{item.description | capitalize}}</v-card-subtitle>
@@ -29,15 +29,15 @@
       <v-btn
         fab
         :class="{ footer: !isDark}"
-        dark="isDark"
+        :dark="isDark"
         :style="moveForBottomNavStyle"
         bottom
         right
         fixed
         color="primary"
-        @click="$router.go(-1)"
+        @click="shortcut"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon>mdi-apps</v-icon>
       </v-btn>
     </div>
   </div>
@@ -50,7 +50,7 @@ import { bottomNav } from "../../mixins/index";
 import { skeltonLoading } from "../../mixins/index";
 export default {
   mixins: [bottomNav, skeltonLoading],
-  async asyncData({ $axios, params, store }) {
+   asyncData({ $axios, params, store }) {
     //******Directly taken from api *********/
     // let mainCategory = await $axios.$get(
     //   `${config.reqHost}/api/public/main_category/${params.mainCategory}`
@@ -99,6 +99,10 @@ export default {
   methods: {
     change() {
       this.mainCategory = null;
+    },
+    shortcut() {
+      this.$store.commit('public/setShortcutData', this.$route.params);
+      this.$router.push('/shortcut');
     }
   },
   transition: {
