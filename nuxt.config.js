@@ -105,6 +105,9 @@ module.exports = {
   pwa: {
     workbox: {
       dev: false
+    },
+    meta: {
+      theme_color: "#21CFF3"
     }
   },
   /*
