@@ -1,13 +1,15 @@
 <template>
   <v-card class="mx-auto" max-width="500">
-    <v-sheet class="pa-4 primary lighten-2">
+    <v-sheet>
       <v-text-field
         v-model="search"
         placeholder="Search Bookmark Directory"
         dark
+        background-color="primary"
         flat
         autofocus
         filled
+        color="white"
         append-icon="mdi-magnify"
         clearable
         clear-icon="mdi-close-circle-outline"
@@ -19,8 +21,9 @@
         :items="items"
         :search="search"
         hoverable
+        autofocus
         activatable
-        :open.sync="open"
+        open-all
         activatabless
       >
         <template v-slot:label="{ item }">
@@ -58,9 +61,6 @@ export default {
       return this.caseSensitive
         ? (item, search, textKey) => item[textKey].indexOf(search) > -1
         : undefined;
-    },
-    open() {
-      return this.$store.state.public.openNodes;
     }
   },
   mounted() {

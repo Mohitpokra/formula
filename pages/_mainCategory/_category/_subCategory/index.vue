@@ -17,7 +17,7 @@
     </div>
     <div v-if="!skeltonLoading">
       <v-container fluid>
-        <v-card :color="isDark ? '' :'#0097A7'" :dark="isDark">
+        <v-card :dark="isDark">
           <v-card-title class="headline">{{subcategory.title}}</v-card-title>
           <v-card-subtitle>{{subcategory.description}}</v-card-subtitle>
         </v-card>

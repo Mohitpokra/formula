@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-breadcrumbs color="red" :items="breadcrumbs">
+    <v-breadcrumbs :items="breadcrumbs">
       <template v-slot:divider>
         <v-icon>mdi-forward</v-icon>
       </template>
@@ -14,10 +14,10 @@
       ></v-skeleton-loader>
     </div>
     <div v-if="!skeltonLoading">
-      <div v-for="(item, index) in mainCategory.categories" :key="item.id">
+      <div v-for="(item) in mainCategory.categories" :key="item.id">
         <nuxt-link class="text-deco-none" :to="`${item.slug}`" append>
           <v-card
-            :class="[{ [`card-bg-${index}`]: !isDark }, 'ma-2', 'ch-100', {'my-colr': !isDark}]"
+            :class="[ 'ma-2', 'ch-100']"
             height="100%"
             :dark="isDark"
           >

@@ -14,9 +14,9 @@ export default {
         error: '#FF5252'
       },
       light: {
-        primary: '#B71C1C',
+        primary: '#1976D2',
         accent: '#e91e63',
-        secondary: '#30b1dc',
+        secondary: '#E3F2FD',
         success: '#4CAF50',
         info: '#2196F3',
         warning: '#FB8C00',

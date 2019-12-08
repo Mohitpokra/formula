@@ -1,16 +1,16 @@
 <template>
   <div>
-    <v-app-bar app :class="{ header: !isDark}" :dark="isDark" :light="!isDark">
+    <v-app-bar app color="primary" dark>
       <v-btn icon v-if="$route.fullPath != '/'" @click="$router.go(-1)">
-        <v-icon color="primary">mdi-arrow-left</v-icon>
+        <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon to="/search" v-if="$route.fullPath == '/' ||$route.params.mainCategory">
-        <v-icon color="primary">mdi-magnify</v-icon>
+        <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn icon @click="changeTheme">
-        <v-icon color="primary">mdi-invert-colors</v-icon>
+        <v-icon>mdi-invert-colors</v-icon>
       </v-btn>
     </v-app-bar>
   </div>

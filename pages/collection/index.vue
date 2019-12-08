@@ -13,9 +13,9 @@
         <div v-for="mainCategory in mainCategories" :key="mainCategory._id">
           <p class="title">{{mainCategory.title}}</p>
           <carousel :scrollPerPage="false">
-            <slide v-for="(category, index) in mainCategory.categories" :key="category.id">
+            <slide v-for="(category) in mainCategory.categories" :key="category.id">
               <v-card
-                :class="[{ [`card-bg-small-${index}`]: !isDark }, 'my-colr', 'd-flex', 'justify-center', 'ch-50' ,'align-center', 'theme--light v-card']"
+                :class="['my-colr', 'd-flex', 'mb-1', 'justify-center', 'ch-50' ,'align-center', 'theme--light v-card']"
                 @click="goTo(mainCategory, category)"
                 :dark="isDark"
               >

@@ -12,12 +12,12 @@
       <div v-if="mainCategories">
         <nuxt-link
           class="text-deco-none"
-          v-for="(item, index) in mainCategories"
+          v-for="(item) in mainCategories"
           :key="item.id"
           :to="`/${item.slug}`"
         >
           <v-card
-            :class="[{ [`card-bg-${index}`]: !isDark }, 'ma-2', 'ch-100', {'my-colr': !isDark}]"
+            :class="['ma-2', 'ch-100']"
             height="100%"
             :dark="isDark"
           >

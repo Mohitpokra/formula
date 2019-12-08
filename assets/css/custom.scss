@@ -7,10 +7,10 @@ $info: #8bc34a;
 $success: #4caf50;
 $colors: ('red': #a00);
 $colors: (
-            "0": linear-gradient(to right, #CC95C0 0%, #DBD4B4 51%, #CC95C0 100%),
-            "1": linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%),
-            "2":  linear-gradient(to right, #DAE2F8 0%, #D6A4A4 51%, #DAE2F8 100%), 
-            "3":  linear-gradient(to right, #ddd6f3 0%, #faaca8 51%, #ddd6f3 100%),
+            "0":#42A5F5,
+            "1":#64B5F6,
+            "2": #1E88E5, 
+            "3":  #1976D2,
             "4": linear-gradient(to right, #B993D6 0%, #8CA6DB 51%, #B993D6 100%),
             "5": linear-gradient(to right, #C9FFBF 0%, #FFAFBD 51%, #C9FFBF 100%),
             "6": linear-gradient(to right, #83a4d4 0%, #b6fbff 51%, #83a4d4 100%),
@@ -23,7 +23,7 @@ $common:  radial-gradient(circle, rgba(201,63,251,1) 0%, rgba(70,153,252,1) 100%
 
 
 div[class*="card-bg"] {
-     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+     background-color: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
      transition: 0.5s !important;
      background-size: 200% auto !important;
      &:hover { background-position: right center; }
@@ -32,14 +32,14 @@ div[class*="card-bg"] {
 
 @for $i from 0 through 10 {
     .card-bg-#{$i} {
-      background-image: map-get($colors, #{$i}) !important; 
+      background-color: map-get($colors, #{$i}) !important; 
       &:hover {
          background-position: right center !important; 
       }
     }
 
     .card-bg-small-#{$i} {
-        background-image: map-get($colors, #{$i}) !important; 
+        background-color: map-get($colors, #{$i}) !important; 
         height: 100px !important;
         overflow: auto !important;
         &:hover {
@@ -60,11 +60,11 @@ div[class*="card-bg"] {
   }
 
   .header {
-    background-image: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%) !important;
+    background-color: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%) !important;
   }
 
   .footer {
-    background-image: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%) !important;
+    background-color: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%) !important;
   }
 
   .text-deco-none {
