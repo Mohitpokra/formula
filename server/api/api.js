@@ -8,5 +8,6 @@ router.use('/user', require('./user/userRoute'));
 router.use('/auth', require('./auth/authRoute'));
 router.use('/public', require('./public/publicRoute'));
 router.use('/collection', require('./collection/collecionRoute'));
+router.use('/feedback', require('./feedback/route'));
 
 module.exports = router;

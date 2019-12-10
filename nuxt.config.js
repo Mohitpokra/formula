@@ -92,12 +92,25 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/vuetify',
     '@nuxtjs/pwa',
+    '@nuxtjs/toast'
   ],
   vuetify: {
     treeShakes: true,
     customVariables: ['~/assets/css/app.scss'],
     optionsPath: "./vuetify.options.js",
 
+  },
+  toast: {
+    position: 'top-center',
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
   },
   /**
    * Pwa Modules
