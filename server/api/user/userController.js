@@ -1,4 +1,5 @@
 var User = require('./userModel');
+var Public = require('../public/publicModel');
 var {
   validateSingUp
 } = require('../../validation/user/signup');
@@ -45,6 +46,7 @@ module.exports.post = async function (req, resp, next) {
   }
  
   try {
+
     let user = await User.findOne({email: req.body.email}, 'email').exec();
     if(user) {
       return resp.json("User with this email is already exits");
@@ -55,8 +57,50 @@ module.exports.post = async function (req, resp, next) {
     user.phone = req.body.phone;
     user.password = req.body.password;
     user = await user.save();
-    var token = signToken(user._id);
-    return resp.json({token: token});
+
+    let publicList = await Public.findOne({}).populate({
+      path: `main_categories`,
+      populate: [{
+          path: 'categories',
+          populate: [{
+              path: 'sub_categories',
+              populate: [{
+                  path: 'products'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }).exec();
+
+    let mainCategories = [];
+    let categories = [];
+    let subCategories = [];
+    let products = [];
+
+    // Add by default all public cateories , maincateories , suncategories and formula to user 
+
+    publicList.main_categories.forEach(item => {
+      mainCategories.push(item._id);
+      item.categories.forEach(item1 => {
+          categories.push(item1._id);
+          item1.sub_categories.forEach(item2 => {
+            subCategories.push(item2._id);
+            item2.products.forEach(item3 => {
+               products.push(item3._id);
+            })
+          })
+      })
+    });
+
+    user.mainCategories = mainCategories;
+    user.categories = categories;
+    user.subCategories = subCategories;
+    user.products = products;
+    user = await user.save();
+
+    return resp.json({msg: 'Userc successfully registered'});
   } catch(err) {
       console.log(err);
       next(err);

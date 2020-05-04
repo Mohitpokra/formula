@@ -4,20 +4,24 @@ const {
   validateMainCategoryPost
 } = require('../../validation/mainCategory/post');
 
-module.exports.params = async function(req, resp, next, slug) {
-  try{
-    let mainCategory = await MainCategory.findOne({slug: slug}).populate({
+module.exports.params = async function (req, resp, next, slug) {
+  try {
+    let mainCategory = await MainCategory.findOne({
+      slug: slug
+    }).populate({
       path: 'categories',
       select: "title slug description"
     }).exec();
 
-    if(!mainCategory) {
-      return resp.status(404).json({msg: "Not found"});
+    if (!mainCategory) {
+      return resp.status(404).json({
+        msg: "Not found"
+      });
     }
 
     req.mainCategory = mainCategory;
     next();
-  } catch(err) {
+  } catch (err) {
     next(err);
   }
 }
@@ -103,3 +107,4 @@ module.exports.post = async function (req, resp, next) {
   }
 
 }
+

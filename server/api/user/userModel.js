@@ -44,7 +44,7 @@ let userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-    if(!this.isModified) return next();
+    if(!this.isModified('password')) return next();
     this.password = this.encryptPassword(this.password);
     next();
 })

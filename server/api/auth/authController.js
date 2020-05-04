@@ -19,7 +19,6 @@ module.exports.decodeToken = function () {
     if (req.query && req.query.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer' + req.query.access_token;
     }
-
     // this will call next if token is valid
     // and send error if its not. It will attached
     // the decoded token to req.user
@@ -71,7 +70,7 @@ module.exports.verifyUser = function () {
       } else {
         // checking the passowords here
         if (!user.authenticate(req.body.password)) {
-          res.status(401).send('Wrong password');
+          res.status(401).send({msg:'Entered password is wrong'});
         } else {
           // if everything is good,
           // then attach to req.user

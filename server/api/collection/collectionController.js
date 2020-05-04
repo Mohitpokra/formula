@@ -157,7 +157,6 @@ module.exports.categoryInMainCategory = async function (req, resp, next) {
 
 module.exports.subCategoryInMainCategory = async function (req, resp, next) {
   try {
-    console.log("here");
     let data = await Collection.findOne().populate({
       path: 'main_categories',
       select: "slug",
